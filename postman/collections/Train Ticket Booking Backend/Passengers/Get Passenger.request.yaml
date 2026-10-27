@@ -1,0 +1,28 @@
+$kind: http-request
+url: "{{baseUrl}}/api/passengers/6"
+method: GET
+headers:
+  - key: x-user-id
+    value: "18"
+    $type: |-
+      {
+        "type": "",
+        "format": "",
+        "required": false,
+        "deprecated": false,
+        "default": "",
+        "enum": [],
+        "pattern": "",
+        "minLength": "",
+        "maxLength": "",
+        "minItems": "",
+        "maxItems": "",
+        "minimum": "",
+        "maximum": "",
+        "uniqueItems": false
+      }
+body:
+  type: text
+  content: '{"name":"Meena Devi","age":48, "gender":"F","berthPreference":"LOWER","idProofType":"AADHAAR","idProofNumber":"777788889999"}'
+settings: {}
+order: 3000

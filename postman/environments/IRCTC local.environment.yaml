@@ -1,0 +1,9 @@
+name: IRCTC local
+values:
+  - key: baseUrl
+    value: ""
+  - key: adminId
+    value: ""
+  - key: userId
+    value: ""
+color: 0

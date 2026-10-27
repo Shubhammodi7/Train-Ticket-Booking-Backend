@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/api/stations"
+method: POST
+headers:
+  x-user-id: "{{adminId}}"
+body:
+  type: json
+  content: "{\r
+
+    \    \"code\": \"BGP\",\r
+
+    \    \"name\": \"Bhagalpur Junction\",\r
+
+    \    \"city\": \"Bhagalpur\",\r
+
+    \    \"state\": \"Bihar\"\r
+
+    }"
+order: 3000

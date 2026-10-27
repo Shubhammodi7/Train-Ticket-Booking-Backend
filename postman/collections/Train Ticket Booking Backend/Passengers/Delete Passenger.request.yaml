@@ -1,0 +1,32 @@
+$kind: http-request
+url: "{{baseUrl}}/api/passengers/6"
+method: DELETE
+headers:
+  - key: x-user-id
+    value: "18"
+    $type: |-
+      {
+        "type": "",
+        "format": "",
+        "required": false,
+        "deprecated": false,
+        "default": "",
+        "enum": [],
+        "pattern": "",
+        "minLength": "",
+        "maxLength": "",
+        "minItems": "",
+        "maxItems": "",
+        "minimum": "",
+        "maximum": "",
+        "uniqueItems": false
+      }
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Meena Barnwal\"\r
+
+    }"
+settings: {}
+order: 5000

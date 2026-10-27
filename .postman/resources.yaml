@@ -1,0 +1,9 @@
+workspace:
+  id: b94bdd38-1ea7-43c5-8172-d57b197edf0f
+cloudResources:
+  collections:
+    ../postman/collections/Train Ticket Booking Backend: 53157010-7b12366e-924c-48f6-8abb-669d7d60e39e
+  environments:
+    ../postman/environments/IRCTC local.environment.yaml: 53157010-6ed9d83a-f6c0-46c6-96f2-b39bcb44e5b9
+  globals:
+    ../postman/globals/workspace.globals.yaml: 7d41ae28-c91d-4662-8d1d-fe6f7d38d86d

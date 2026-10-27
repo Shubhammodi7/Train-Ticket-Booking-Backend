@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/api/stations?q=pat&limit=10"
+method: GET
+queryParams:
+  q: pat
+  limit: "10"
+settings: {}
+order: 1000
