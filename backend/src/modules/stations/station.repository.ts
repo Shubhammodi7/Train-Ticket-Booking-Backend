@@ -16,12 +16,11 @@ export class StationRepository implements IStationRepository {
     return rows[0];
   }
 
-  async findByCode(code: string): Promise<Station | null> {
-    const row = await query<Station>(
-      `SELECT ${COLUMNS} FROM stations where code = $1 AND is_active = true`,
-      [code],
+  async findByCode(codes: string[]): Promise<Station[] | null> {
+    return query<Station>(
+      `SELECT ${COLUMNS} FROM stations WHERE code = ANY($1::text[]) AND is_active = true`,
+      [codes],
     );
-    return row[0] ?? undefined;
   }
 
   async search(prefix: string | undefined, limit: number): Promise<Station[]> {

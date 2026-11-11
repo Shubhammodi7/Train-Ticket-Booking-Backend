@@ -117,6 +117,58 @@ async function main() {
     );
   }
 
+  // 4. trains and their stops (sample data, times are illustrative)
+  type Stop = [
+    code: string,
+    arr: string | null,
+    dep: string | null,
+    dayOffset: number,
+    km: number,
+  ];
+  const TRAINS: { number: string; name: string; stops: Stop[] }[] = [
+    {
+      number: "12024",
+      name: "Patna Howrah Jan Shatabdi",
+      stops: [
+        ["PNBE", null, "06:00", 0, 0],
+        ["JAJ", "08:05", "08:07", 0, 130],
+        ["ASN", "10:45", "10:50", 0, 330],
+        ["HWH", "13:30", null, 0, 530],
+      ],
+    },
+    {
+      number: "18625",
+      name: "Patna Ranchi Express",
+      stops: [
+        ["PNBE", null, "20:00", 0, 0],
+        ["GAYA", "21:30", "21:35", 0, 100],
+        ["KQR", "23:30", "23:32", 0, 220],
+        ["MURI", "01:40", "01:42", 1, 350],
+        ["RNC", "03:30", null, 1, 400],
+      ],
+    },
+  ];
+
+  for (const t of TRAINS) {
+    await query(
+      `INSERT INTO trains (number, name, source_station_id, destination_station_id)
+     VALUES ($1, $2,
+       (SELECT id FROM stations WHERE code = $3),
+       (SELECT id FROM stations WHERE code = $4))
+     ON CONFLICT (number) DO NOTHING`,
+      [t.number, t.name, t.stops[0][0], t.stops[t.stops.length - 1][0]],
+    );
+    for (const [i, [code, arr, dep, dayOffset, km]] of t.stops.entries()) {
+      await query(
+        `INSERT INTO train_stops (train_id, station_id, stop_seq, arrival_time, departure_time, day_offset, distance_km)
+       SELECT t.id, s.id, $2, $3, $4, $5, $6
+       FROM trains t, stations s WHERE t.number = $1 AND s.code = $7
+       ON CONFLICT (train_id, stop_seq) DO NOTHING`,
+        [t.number, i + 1, arr, dep, dayOffset, km, code],
+      );
+    }
+  }
+
   console.log("Seed complete.\n");
   console.log("User ids (use as the x-user-id header):");
   for (const u of USERS)

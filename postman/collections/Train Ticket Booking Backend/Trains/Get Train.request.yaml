@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/api/trains/18625"
+method: GET
+order: 2000

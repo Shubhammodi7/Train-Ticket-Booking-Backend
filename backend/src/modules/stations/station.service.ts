@@ -1,4 +1,5 @@
 import { ConflictError, NotFoundError } from "../../common/errors/http-error";
+import { IStationLookup } from "../trains/train.types";
 import {
   CreateStationInput,
   IStationRepository,
@@ -8,7 +9,7 @@ import {
 
 const escapeLike = (s: string) => s.replace(/[\\%_]/g, (c) => `\\${c}`);
 
-export class StationService {
+export class StationService implements IStationLookup {
   constructor(private readonly repo: IStationRepository) {}
 
   async createStation(dto: CreateStationInput): Promise<Station> {
@@ -23,12 +24,8 @@ export class StationService {
     }
   }
 
-  async getStation(code: string): Promise<Station> {
-    const station = await this.repo.findByCode(code);
-    if (!station)
-      throw new NotFoundError(`Station with code ${code} not found`);
-
-    return station;
+  async getStation(codes: string[]): Promise<Station[] | null> {
+    return this.repo.findByCode(codes);
   }
 
   async searchStations(
@@ -51,5 +48,9 @@ export class StationService {
     const flag = await this.repo.deactivate(code);
 
     if (!flag) throw new NotFoundError(`Station Not Found`);
+  }
+
+  async getStationsByCodes(codes: string[]): Promise<Station[]> {
+    return (await this.repo.findByCode(codes)) ?? [];
   }
 }

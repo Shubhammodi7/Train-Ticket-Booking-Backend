@@ -1,0 +1,1 @@
+TRUNCATE train_stops, trains, passengers, stations, users RESTART IDENTITY CASCADE

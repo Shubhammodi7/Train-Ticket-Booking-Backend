@@ -19,7 +19,7 @@ export type UpdateStationInput = Partial<Omit<CreateStationInput, "code">>;
 
 export interface IStationRepository {
   create(input: CreateStationInput): Promise<Station>;
-  findByCode(code: string): Promise<Station | null>;
+  findByCode(code: string[]): Promise<Station[] | null>;
   search(prefix: string | undefined, limit: number): Promise<Station[]>;
   update(code: string, patch: UpdateStationInput): Promise<Station | null>;
   deactivate(code: string): Promise<boolean>;

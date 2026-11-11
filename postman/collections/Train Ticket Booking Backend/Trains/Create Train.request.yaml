@@ -1,0 +1,25 @@
+$kind: http-request
+url: "{{baseUrl}}/api/trains"
+method: POST
+headers:
+  x-user-id: "{{adminId}}"
+body:
+  type: json
+  content: "{\r
+
+    \  \"number\": \"12345\",\r
+
+    \  \"name\": \"Gaya Dhanbad Express\",\r
+
+    \  \"stops\": [\r
+
+    \    { \"stationCode\": \"gaya\", \"departureTime\": \"07:00\", \"dayOffset\": 0, \"distanceKm\": 0 },\r
+
+    \    { \"stationCode\": \"kqr\", \"arrivalTime\": \"08:30\", \"departureTime\": \"08:32\", \"dayOffset\": 0, \"distanceKm\": 120 },\r
+
+    \    { \"stationCode\": \"dhn\", \"arrivalTime\": \"11:00\", \"dayOffset\": 0, \"distanceKm\": 260 }\r
+
+    \  ]\r
+
+    }"
+order: 3000
