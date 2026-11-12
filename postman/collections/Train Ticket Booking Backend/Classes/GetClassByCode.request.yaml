@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/api/classes/2s"
+method: GET
+order: 2000
