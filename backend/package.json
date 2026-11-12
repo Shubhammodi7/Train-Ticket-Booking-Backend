@@ -10,7 +10,8 @@
     "migrate:create": "node-pg-migrate create -j sql -m migrations",
     "migrate:up": "dotenv -e .env -- node-pg-migrate up -j sql -m migrations --database-url-var DATABASE_URL_DIRECT",
     "migrate:down": "dotenv -e .env -- node-pg-migrate down -j sql -m migrations --database-url-var DATABASE_URL_DIRECT",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "seed:classes": "tsx scripts/seed_class.ts"
   },
   "keywords": [],
   "author": "",
