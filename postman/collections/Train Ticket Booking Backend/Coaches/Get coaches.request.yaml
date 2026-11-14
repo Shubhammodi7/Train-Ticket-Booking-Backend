@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/api/trains/12024/coaches"
+method: GET
+order: 1000

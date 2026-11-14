@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{baseUrl}}/api/trains/12345/coaches"
+method: POST
+headers:
+  x-user-id: "{{adminId}}"
+body:
+  type: json
+  content: "{\r
+
+    \  \"coaches\": [\r
+
+    \    { \"classCode\": \"CC\", \"totalSeats\": 72 },\r
+
+    \    { \"classCode\": \"CC\", \"totalSeats\": 72 },\r
+
+    \    { \"classCode\": \"EC\" }\r
+
+    \  ]\r
+
+    }"
+order: 3000
