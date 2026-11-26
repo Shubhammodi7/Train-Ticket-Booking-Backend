@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/api/trains/12024/schedule"
+method: PUT
+headers:
+  x-user-id: "{{adminId}}"
+body:
+  type: json
+  content: '{"runningDays":[1,3,6],"isActive":false}'
+order: 3000
