@@ -1,3 +1,6 @@
+import { ScheduleController } from "./modules/schedules/schedule.controller";
+import { ScheduleService } from "./modules/schedules/schedule.service";
+import { ScheduleRepository } from "./modules/schedules/schedule.repository";
 import { ClassRepository } from "./modules/classes/class.repository";
 import { PassengerRepository } from "./modules/passengers/passenger.repository";
 import { PassengerService } from "./modules/passengers/passenger.services";
@@ -39,6 +42,10 @@ const coachService = new CoachService(
 );
 const coachController = new CoachController(coachService);
 
+const scheduleRepository = new ScheduleRepository();
+const scheduleService = new ScheduleService(scheduleRepository, trainService);
+const scheduleController = new ScheduleController(scheduleService);
+
 export const container = {
   passengerService,
   passengerController,
@@ -50,4 +57,6 @@ export const container = {
   classController,
   coachService,
   coachController,
+  scheduleService,
+  scheduleController,
 };
